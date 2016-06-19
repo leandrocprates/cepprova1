@@ -25,11 +25,13 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
         $http.get(url)
                 .success(function (data){
                     $scope.endereco=data;
+                    $scope.mensagem =null;
                     console.log('Busca correta');
                 })
                 .error(function (data){
                     console.log('Erro na busca ');
                     $scope.mensagem = data.msg; 
+                    $scope.endereco=null;
                 });                
     };    
     
