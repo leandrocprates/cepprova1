@@ -10,7 +10,9 @@ import com.webserviceangulajs.RangesValidos;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -175,6 +177,40 @@ public class EnderecoService {
  	
         }
         
+        
+        
+        @POST
+        @Path("/addEndereco")
+        @Consumes(MediaType.APPLICATION_JSON)
+        public Response addEndereco(Endereco  endereco){
+            System.out.println("CEP: "+ endereco.getCep());
+            System.out.println("RUA: "+ endereco.getRua());
+            System.out.println("BAirro: "+endereco.getBairro());
+            System.out.println("Cidade: "+endereco.getCidade());
+            
+
+            String replacedCep = endereco.getCep().replaceAll("-", "");
+            
+            
+            RangesValidos range = new RangesValidos();
+            
+            String rangeInicial = replacedCep.substring(0, replacedCep.length() -1 -2 ) ; 
+            rangeInicial = rangeInicial+"000";
+            
+            String rangeFinal = replacedCep.substring(0, replacedCep.length() -1 -2 ) ; 
+            rangeFinal = rangeFinal+"999";
+            
+            
+            range.setRangeInicial(Integer.parseInt(rangeInicial));
+            range.setRangeFinal(Integer.parseInt(rangeFinal));
+            
+            
+            listaDeRangesValidos.add(range);
+            mapDeEnderecos.put( Integer.parseInt(replacedCep) ,endereco );
+            
+            
+            return Response.status(200).build();
+        }
         
         
     

@@ -12,10 +12,24 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
 {
     $scope.person = {firstName:"John Maluco", lastName:"Doe", age:50, eyeColor:"blue"};
     
+    function Endereco() {
+        rua=null;
+        bairro=null;
+        cidade=null;
+        estado=null;
+        cep=null;
+        msg=null;
+    };
+    
+    
+    $scope.endereco = new Endereco(); 
+    
+    $scope.showdiv='BUSCA'; 
     
     $scope.cepDigitado='';
     $scope.endereco;
     $scope.mensagem='';
+    $scope.insercaoMessage='';
 
     
     $scope.buscarEndereco = function(){
@@ -35,6 +49,27 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
                 });                
     };    
     
+    
+    $scope.inserirEndereco = function(){
+        
+        var url='http://localhost:8084/WebServiceAngulaJS/rest/buscaEndereco/addEndereco' ;
+        
+        $http.post(url,$scope.endereco)
+                .success(function (data){
+                    console.log('Endereco adicionado com sucesso.');
+                    $scope.insercaoMessage='Endereco Inserido com sucesso';
+                })
+                .error(function (data){
+                    console.log('Erro ao adicionar endereco.');
+                });
+        
+    };
+    
+    
+    
+    $scope.irpara= function(irpara){
+        $scope.showdiv=irpara; 
+    };
     
     
     $scope.chamarGet = function(){

@@ -21,54 +21,112 @@ and open the template in the editor.
   </head>
   <body ng-app="mainApp" ng-controller="cepController">
 
-    <h1>Busca Endereco do CEP </h1>  
       
-    <br/><br/>
+    <div ng-show="showdiv=='BUSCA'">
     
-    <div class="alert alert-danger" role="alert" ng-show="mensagem.length>1"  >{{mensagem}}</div>  
-    
-    
-    <form class="form-inline">
-      <div class="form-group">
-        <label for="exampleInputName2">Digite o CEP: </label>
-        <input type="text"  ng-model="cepDigitado"  class="form-control" id="exampleInputName2" placeholder="CEP">
-      </div>
-        <button type="button"     ng-click="buscarEndereco()"  class="btn btn-primary">Buscar Endereco</button>
-    </form>    
-    <br/><br/>
-    
-    
-    
-    <br/><br/>
-    
-    <div class="panel panel-success">
-        <div class="panel-heading">Resultado Busca por CEP</div>
+            <a ng-href="" ng-click="irpara('INSERIR')">Ir para Prova 2 </a>
+        
+      
+            <h1>Busca Endereco do CEP </h1>  
 
-        <table class="table table-hover">
+            <br/><br/>
+
+            <div class="alert alert-danger" role="alert" ng-show="mensagem.length>1"  >{{mensagem}}</div>  
+
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="exampleInputName2">Digite o CEP: </label>
+                <input type="text"  ng-model="cepDigitado"  class="form-control" id="exampleInputName2" placeholder="CEP">
+              </div>
+                <button type="button"   ng-click="buscarEndereco()"  class="btn btn-primary">Buscar Endereco</button>
+            </form>    
+            <br/><br/>
+
+
+
+            <br/><br/>
+
+            <div class="panel panel-success">
+                <div class="panel-heading">Resultado Busca por CEP</div>
+
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>Rua</th>
+                            <th>Bairro</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
+                            <th>Cep</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>{{endereco.rua}}</td>
+                            <td>{{endereco.bairro}}</td>
+                            <td>{{endereco.cidade}}</td>
+                            <td>{{endereco.estado}}</td>
+                            <td>{{endereco.cep}}</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>    
     
-            <thead>
-                <tr>
-                    <th>Rua</th>
-                    <th>Bairro</th>
-                    <th>Cidade</th>
-                    <th>Estado</th>
-                    <th>Cep</th>
-                </tr>
-            </thead>
+    </div>  
       
-            <tbody>
-                <tr>
-                    <td>{{endereco.rua}}</td>
-                    <td>{{endereco.bairro}}</td>
-                    <td>{{endereco.cidade}}</td>
-                    <td>{{endereco.estado}}</td>
-                    <td>{{endereco.cep}}</td>
-                </tr>
-                
-            </tbody>
+      
+      
+    <div ng-show="showdiv=='INSERIR'" class="col-md-5">
+        
+            <a ng-href="" ng-click="irpara('BUSCA')">Ir para Prova 1 </a>
+        
+            <h1>Inserir Cep Novo</h1>  
             
-        </table>
-    </div>    
+            <div class="alert alert-success" role="alert" ng-show="insercaoMessage.length>1"  >{{insercaoMessage}}</div>
+
+            <br/><br/>
+        
+        
+            <form >
+                <div class="form-group">
+                  <label for="cep">Digite o CEP: </label>
+                  <input type="text"  ng-model="endereco.cep"  class="form-control" id="cep" placeholder="CEP">
+                </div>
+                <div class="form-group">
+                  <label for="rua">Digite a Rua: </label>
+                  <input type="text"  ng-model="endereco.rua"  class="form-control" id="rua" placeholder="Rua">
+                </div>
+                <div class="form-group">
+                  <label for="bairro">Digite o Bairro: </label>
+                  <input type="text"  ng-model="endereco.bairro"  class="form-control" id="bairro" placeholder="Bairro">
+                </div>
+                <div class="form-group">
+                  <label for="cidade">Digite o Cidade: </label>
+                  <input type="text"  ng-model="endereco.cidade"  class="form-control" id="cep" placeholder="Cidade">
+                </div>
+                <div class="form-group">
+                  <label for="estado">Digite o Estado: </label>
+                  <input type="text"  ng-model="endereco.estado"  class="form-control" id="cep" placeholder="Estado">
+                </div>
+
+                <button type="button"     ng-click="inserirEndereco()"  class="btn btn-primary">Adicionar</button>
+            </form>    
+            <br/><br/>
+        
+        
+        
+        
+    </div>
+    
+    
+    
+    
+    
+    
     
     
     
