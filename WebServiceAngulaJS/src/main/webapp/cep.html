@@ -24,6 +24,10 @@ and open the template in the editor.
     <h1>Busca Endereco do CEP </h1>  
       
     <br/><br/>
+    
+    <div class="alert alert-danger" role="alert" ng-show="mensagem.length>1"  >{{mensagem}}</div>  
+    
+    
     <form class="form-inline">
       <div class="form-group">
         <label for="exampleInputName2">Digite o CEP: </label>
@@ -33,7 +37,7 @@ and open the template in the editor.
     </form>    
     <br/><br/>
     
-    {{endereco}}
+    
     
     <br/><br/>
     

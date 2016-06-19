@@ -15,6 +15,7 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
     
     $scope.cepDigitado='';
     $scope.endereco;
+    $scope.mensagem='';
 
     
     $scope.buscarEndereco = function(){
@@ -28,6 +29,7 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
                 })
                 .error(function (data){
                     console.log('Erro na busca ');
+                    $scope.mensagem = data.msg; 
                 });                
     };    
     

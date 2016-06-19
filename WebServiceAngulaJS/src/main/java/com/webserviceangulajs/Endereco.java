@@ -21,6 +21,7 @@ public class Endereco {
     private String cidade;
     private String estado; 
     private String cep;
+    private String msg;
 
     public String getRua() {
         return rua;
@@ -61,7 +62,14 @@ public class Endereco {
     public void setCep(String cep) {
         this.cep = cep;
     }
-    
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
     
 }
 
