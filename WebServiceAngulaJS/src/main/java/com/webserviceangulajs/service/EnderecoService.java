@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -230,6 +231,21 @@ public class EnderecoService {
         }        
         
 
+        
+        @DELETE
+        @Path("/excluirEndereco")
+        @Consumes(MediaType.APPLICATION_JSON)
+        public Response deleteRegistro(Endereco  endereco){
+            
+            System.out.println("CEP: "+ endereco.getCep());
+            System.out.println("RUA: "+ endereco.getRua());
+            System.out.println("Bairro: "+endereco.getBairro());
+            System.out.println("Cidade: "+endereco.getCidade());
+            
+            
+            return Response.status(200).build();
+            
+        }
         
         
 }

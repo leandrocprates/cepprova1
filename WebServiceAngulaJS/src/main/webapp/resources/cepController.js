@@ -57,13 +57,48 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
         $http.post(url,$scope.endereco)
                 .success(function (data){
                     console.log('Endereco adicionado com sucesso.');
-                    $scope.insercaoMessage='Endereco Inserido com sucesso';
+                    $scope.insercaoMessage='Endereco Inserido com sucesso.';
                 })
                 .error(function (data){
                     console.log('Erro ao adicionar endereco.');
                 });
         
     };
+    
+    
+    $scope.alterarEndereco= function(endereco){
+        $scope.endereco= endereco;
+        $scope.showdiv='INSERIR';
+    };
+    
+    $scope.excluir= function(endereco){
+        $scope.endereco= endereco;
+        
+        var url='http://localhost:8084/WebServiceAngulaJS/rest/buscaEndereco/excluirEndereco' ;
+        
+        var req = {
+         method: 'DELETE',
+         url: url,
+         headers: {
+           'Content-Type': 'application/json'
+         },
+         data: $scope.endereco
+        };
+        
+        $http(req)
+            .success(function (data){
+                console.log('Endereco deletado com sucesso.');
+            })
+            .error(function (data){
+                console.log('Erro ao deletar endereco.');
+            });
+        
+        
+        
+    };
+    
+    
+    
     
     
     
@@ -87,13 +122,13 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
         if ($scope.showdiv == 'LISTAR' ){
             $scope.listarEnderecos();
         } else if ($scope.showdiv == 'INSERIR' ){
-                
+            $scope.endereco = new Endereco();    
         }
         
         
     };
     
-    
+    /*
     
     
     
@@ -155,7 +190,7 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
                 });
     };
     
-    
+    */
 
     
     

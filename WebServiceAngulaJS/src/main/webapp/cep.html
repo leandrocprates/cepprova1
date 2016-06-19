@@ -97,6 +97,7 @@ and open the template in the editor.
                             <th>Cidade</th>
                             <th>Estado</th>
                             <th>Cep</th>
+                            <th>Acao</th>
                         </tr>
                     </thead>
 
@@ -107,6 +108,10 @@ and open the template in the editor.
                             <td>{{endereco.cidade}}</td>
                             <td>{{endereco.estado}}</td>
                             <td>{{endereco.cep}}</td>
+                            <td>
+                                <button type="button" ng-click="alterarEndereco(endereco)" class="btn btn-primary">Alterar</button>
+                                <button type="button" ng-click="excluir(endereco)" class="btn btn-danger">Deletar</button>
+                            </td>
                         </tr>
 
                     </tbody>
@@ -129,7 +134,7 @@ and open the template in the editor.
             <br/><br/>
         
         
-            <form >
+            <form>
                 <div class="form-group">
                   <label for="cep">Digite o CEP: </label>
                   <input type="text"  ng-model="endereco.cep"  class="form-control" id="cep" placeholder="CEP">
