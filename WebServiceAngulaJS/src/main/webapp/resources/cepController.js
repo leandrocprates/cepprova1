@@ -67,9 +67,34 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
     
     
     
+    $scope.listarEnderecos = function(){
+        
+        var url='http://localhost:8084/WebServiceAngulaJS/rest/buscaEndereco/listarEnderecos' ;
+        
+        $http.get(url)
+                .success(function (data){
+                    $scope.listaEndereco= ( data.length == 1 )?  new Array(data): data ;
+                    console.log('Busca correta');
+                })
+                .error(function (data){
+                    console.log('Erro na busca ');
+                });                
+    };
+    
     $scope.irpara= function(irpara){
         $scope.showdiv=irpara; 
+        
+        if ($scope.showdiv == 'LISTAR' ){
+            $scope.listarEnderecos();
+        } else if ($scope.showdiv == 'INSERIR' ){
+                
+        }
+        
+        
     };
+    
+    
+    
     
     
     $scope.chamarGet = function(){

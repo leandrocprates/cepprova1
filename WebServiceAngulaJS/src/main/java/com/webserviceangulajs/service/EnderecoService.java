@@ -8,6 +8,7 @@ package com.webserviceangulajs.service;
 import com.webserviceangulajs.Endereco;
 import com.webserviceangulajs.RangesValidos;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -17,6 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
@@ -213,5 +215,21 @@ public class EnderecoService {
         }
         
         
-    
+	@GET
+	@Path("/listarEnderecos")
+        @Produces(MediaType.APPLICATION_JSON)
+	public Response getListaEnderecos() {
+            
+            List<Endereco> listaEnderecos = new ArrayList<Endereco>(); 
+            
+            Collection<Endereco>  collectionEndereco =   mapDeEnderecos.values(); 
+
+            GenericEntity<Collection<Endereco>> entity = new GenericEntity<Collection<Endereco>>(collectionEndereco) {};
+            return Response.ok().entity(entity).build();            
+            
+        }        
+        
+
+        
+        
 }

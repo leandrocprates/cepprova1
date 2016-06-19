@@ -24,7 +24,8 @@ and open the template in the editor.
       
     <div ng-show="showdiv=='BUSCA'">
     
-            <a ng-href="" ng-click="irpara('INSERIR')">Ir para Prova 2 </a>
+            <a ng-href="" ng-click="irpara('LISTAR')">Listar Endereco </a><br/>
+            <a ng-href="" ng-click="irpara('INSERIR')">Inserir Endereco </a>
         
       
             <h1>Busca Endereco do CEP </h1>  
@@ -79,10 +80,47 @@ and open the template in the editor.
     </div>  
       
       
+      <div ng-show="showdiv=='LISTAR'" class="col-md-12">
+          
+          <h1>Lista de Ceps </h1>
+          
+          
+            <div class="panel panel-success">
+                <div class="panel-heading">Lista de CEPs</div>
+
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>Rua</th>
+                            <th>Bairro</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
+                            <th>Cep</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat=" endereco in listaEndereco "  >
+                            <td>{{endereco.rua}}</td>
+                            <td>{{endereco.bairro}}</td>
+                            <td>{{endereco.cidade}}</td>
+                            <td>{{endereco.estado}}</td>
+                            <td>{{endereco.cep}}</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>    
+          
+          
+      </div>  
+      
       
     <div ng-show="showdiv=='INSERIR'" class="col-md-5">
         
-            <a ng-href="" ng-click="irpara('BUSCA')">Ir para Prova 1 </a>
+            <a ng-href="" ng-click="irpara('BUSCA')">Ir para Busca  </a>
         
             <h1>Inserir Cep Novo</h1>  
             
@@ -116,9 +154,6 @@ and open the template in the editor.
                 <button type="button"     ng-click="inserirEndereco()"  class="btn btn-primary">Adicionar</button>
             </form>    
             <br/><br/>
-        
-        
-        
         
     </div>
     
