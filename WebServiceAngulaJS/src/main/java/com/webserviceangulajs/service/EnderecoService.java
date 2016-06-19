@@ -28,8 +28,8 @@ import javax.ws.rs.core.Response;
 /**
  * Rua Olimpíadas, 360 Vila Olimpia -           CEP: 04551000 - 04551500 - 04551999   São Paulo - SP.
  * Travessa Casalbuono nº 120  Vila Guilherme - CEP: 02089000 - 02089900 - 02089999   São Paulo / SP
- * Endereço: Rua Dr. Melo Freire S/N, Tatuapé   CEP: 03314000 - 03314030 - 03314999
- * 
+ * Endereço: Rua Dr. Melo Freire S/N, Tatuapé   CEP: 03314000 - 03314030 - 03314999   São Paulo / SP
+ * Avenic Nova Cantareira                       CEP: 02514000 -          - 02514999   São Paulo / SP
  * @author ariane
  */
 
@@ -68,9 +68,15 @@ public class EnderecoService {
             range3.setRangeInicial(3314000);
             range3.setRangeFinal(3314999);
 
+            RangesValidos range4 = new RangesValidos();
+            range4.setRangeInicial(2514000);
+            range4.setRangeFinal(2514999);
+            
+            
             listaDeRangesValidos.add(range1);
             listaDeRangesValidos.add(range2);
             listaDeRangesValidos.add(range3);
+            listaDeRangesValidos.add(range4);
             
         }
         
@@ -104,6 +110,16 @@ public class EnderecoService {
 
             mapDeEnderecos.put(3314030,endereco3 );
             
+            
+            Endereco endereco4 = new Endereco();
+            endereco4.setBairro("Cantareira");
+            endereco4.setCep("02514000");
+            endereco4.setCidade("Sao Paulo");
+            endereco4.setEstado("SP");
+            endereco4.setRua("Avenida Nova Cantareira, 3500");
+            
+            mapDeEnderecos.put(2514000,endereco4 );
+            
         }
         
         
@@ -133,15 +149,26 @@ public class EnderecoService {
                 }
             
                 
-                //endereco.setBairro("Lauzane Paulista");
-                //endereco.setCep("02440050");
-                //endereco.setCidade("Sao Paulo");
-                //endereco.setEstado("SP");
-                //endereco.setRua("Avenida Joao Pessoa 408");
-            
                 
+                //Acha na primeira tentativa caso diferente de null
                 endereco =  (Endereco) mapDeEnderecos.get(Integer.parseInt(cep)); 
                 
+                int lastIndex = cep.length()-1;
+                int countMaxBusca = 0; //Tenta buscar somente substituindo os ultimos 3 digitos
+                
+                
+                while ( endereco == null && countMaxBusca < 3  ){
+                    
+                    char cepArray [] = cep.toCharArray(); 
+                    cepArray[lastIndex]='0';
+                    
+                    endereco = (Endereco) mapDeEnderecos.get(Integer.parseInt(String.valueOf(cepArray))); 
+                    
+                    lastIndex = lastIndex-1; 
+                    countMaxBusca++; 
+                    cep =  String.valueOf(cepArray); 
+                    
+                }
                 
                 
  		return Response.status(200).entity(endereco).build();
