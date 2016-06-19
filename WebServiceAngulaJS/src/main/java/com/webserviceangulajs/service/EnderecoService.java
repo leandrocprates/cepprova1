@@ -140,7 +140,7 @@ public class EnderecoService {
                 //endereco.setRua("Avenida Joao Pessoa 408");
             
                 
-                endereco =  (Endereco) mapDeEnderecos.get(cep); 
+                endereco =  (Endereco) mapDeEnderecos.get(Integer.parseInt(cep)); 
                 
                 
                 
