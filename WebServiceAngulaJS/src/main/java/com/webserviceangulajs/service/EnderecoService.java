@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -60,7 +62,7 @@ public class EnderecoService {
 // 		String output = "Avenida joao pessoa : " + cep;
 // 		return Response.status(200).entity(output).build();
 // 	}
-    
+    /*
         
         static {
             
@@ -87,7 +89,7 @@ public class EnderecoService {
             listaDeRangesValidos.add(range4);
             
         }
-        
+        */
         
         static {
             
@@ -150,6 +152,8 @@ public class EnderecoService {
                 Endereco endereco = new Endereco();
                 boolean cepValido=false ; 
             
+                
+                /*
                 for (  RangesValidos range :  listaDeRangesValidos ) {
                     
                     if ( Integer.parseInt(cep) >=  range.getRangeInicial() &&   
@@ -159,8 +163,9 @@ public class EnderecoService {
                     }
                     
                 }
+                */
                 
-                if ( cepValido == false  ){
+                if ( validaCep(cep) == false  ){
                     endereco.setMsg("Cep invalido");
                     return Response.status(404).entity(endereco).build();
                 }
@@ -168,7 +173,6 @@ public class EnderecoService {
                 
                 
                 //Acha na primeira tentativa caso diferente de null
-                //endereco =  (Endereco) mapDeEnderecos.get(Integer.parseInt(cep)); 
                 endereco = buscaCep( cep.toCharArray() ); 
                 
                 
@@ -181,7 +185,6 @@ public class EnderecoService {
                     char cepArray [] = cep.toCharArray(); 
                     cepArray[lastIndex]='0';
                     
-                    //endereco = (Endereco) mapDeEnderecos.get(Integer.parseInt(String.valueOf(cepArray))); 
                     endereco = buscaCep( cepArray ); 
                     
                     
@@ -202,6 +205,8 @@ public class EnderecoService {
         @Path("/addEndereco")
         @Consumes(MediaType.APPLICATION_JSON)
         public Response addEndereco(Endereco  endereco){
+            
+            System.out.println("ID: "+ endereco.getId());
             System.out.println("CEP: "+ endereco.getCep());
             System.out.println("RUA: "+ endereco.getRua());
             System.out.println("BAirro: "+endereco.getBairro());
@@ -211,6 +216,7 @@ public class EnderecoService {
             String replacedCep = endereco.getCep().replaceAll("-", "");
             
             
+            /*
             RangesValidos range = new RangesValidos();
             
             String rangeInicial = replacedCep.substring(0, replacedCep.length() -1 -2 ) ; 
@@ -224,11 +230,17 @@ public class EnderecoService {
             range.setRangeFinal(Integer.parseInt(rangeFinal));
             
             
-            idEndereco++;
-            endereco.setId(idEndereco);
-            
             listaDeRangesValidos.add(range);
-            mapDeEnderecos.put( idEndereco , endereco );
+            */
+            
+            // Se ID > 0 Atualiza , senao insere novo 
+            if ( endereco.getId() > 0  ){
+                mapDeEnderecos.put( endereco.getId() , endereco );
+            } else {
+                idEndereco++;
+                endereco.setId(idEndereco);
+                mapDeEnderecos.put( idEndereco , endereco );
+            }
             
             
             return Response.status(200).build();
@@ -246,7 +258,7 @@ public class EnderecoService {
             GenericEntity<Collection<Endereco>> entity = new GenericEntity<Collection<Endereco>>(collectionEndereco) {};
             return Response.ok().entity(entity).build();            
             
-        }        
+        }
         
 
         
@@ -255,11 +267,14 @@ public class EnderecoService {
         @Consumes(MediaType.APPLICATION_JSON)
         public Response deleteRegistro(Endereco  endereco){
             
+            System.out.println("ID: "+ endereco.getId());
             System.out.println("CEP: "+ endereco.getCep());
             System.out.println("RUA: "+ endereco.getRua());
             System.out.println("Bairro: "+endereco.getBairro());
             System.out.println("Cidade: "+endereco.getCidade());
             
+            
+            mapDeEnderecos.remove(endereco.getId()); 
             
             return Response.status(200).build();
             
@@ -286,6 +301,17 @@ public class EnderecoService {
         }
         
         
-        
+        //Método que valida o Cep
+        public boolean validaCep(String cep)
+        {
+            if (cep.length() == 8)
+            {
+                cep = cep.substring(0, 5) + "-" + cep.substring(5, 8);
+                
+            }
+            Pattern pattern =  Pattern.compile("[0-9]{5}-[0-9]{3}");
+            Matcher m = pattern.matcher(cep);
+            return m.matches();            
+        }        
         
 }

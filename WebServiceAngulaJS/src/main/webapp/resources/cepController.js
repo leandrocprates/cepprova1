@@ -13,6 +13,7 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
     $scope.person = {firstName:"John Maluco", lastName:"Doe", age:50, eyeColor:"blue"};
     
     function Endereco() {
+        id=null;
         rua=null;
         bairro=null;
         cidade=null;
@@ -88,6 +89,7 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
         $http(req)
             .success(function (data){
                 console.log('Endereco deletado com sucesso.');
+                $scope.listarEnderecos();
             })
             .error(function (data){
                 console.log('Erro ao deletar endereco.');
