@@ -50,6 +50,9 @@ public class EnderecoService {
         static List<RangesValidos> listaDeRangesValidos = new ArrayList<RangesValidos>(); 
         static HashMap mapDeEnderecos = new HashMap<Integer, Endereco>(); 
     
+        static int idEndereco = 1 ; 
+        
+        
 //	@GET
 //	@Path("/{param}")
 //        @Produces("text/plain")
@@ -89,41 +92,50 @@ public class EnderecoService {
         static {
             
             Endereco endereco1 = new Endereco();
+            endereco1.setId(idEndereco);
             endereco1.setBairro("Vila Olimpia");
             endereco1.setCep("04551500");
             endereco1.setCidade("Sao Paulo");
             endereco1.setEstado("SP");
             endereco1.setRua("Rua Olimpíadas, 360");
             
-            mapDeEnderecos.put(4551500,endereco1 );
+            mapDeEnderecos.put(idEndereco,endereco1 );
+            
+            idEndereco++;
             
             Endereco endereco2 = new Endereco();
+            endereco2.setId(idEndereco);
             endereco2.setBairro("Vila Guilherme");
             endereco2.setCep("02089900");
             endereco2.setCidade("Sao Paulo");
             endereco2.setEstado("SP");
             endereco2.setRua("Travessa Casalbuono, 120");
 
-            mapDeEnderecos.put(2089900,endereco2 );
+            mapDeEnderecos.put(idEndereco,endereco2 );
+            
+            idEndereco++;
             
             Endereco endereco3 = new Endereco();
+            endereco3.setId(idEndereco);
             endereco3.setBairro("Tatuapé");
             endereco3.setCep("03314030");
             endereco3.setCidade("Sao Paulo");
             endereco3.setEstado("SP");
             endereco3.setRua("Dr. Melo Freire S/N");
 
-            mapDeEnderecos.put(3314030,endereco3 );
+            mapDeEnderecos.put(idEndereco,endereco3 );
             
+            idEndereco++;
             
             Endereco endereco4 = new Endereco();
+            endereco4.setId(idEndereco);
             endereco4.setBairro("Cantareira");
             endereco4.setCep("02514000");
             endereco4.setCidade("Sao Paulo");
             endereco4.setEstado("SP");
             endereco4.setRua("Avenida Nova Cantareira, 3500");
             
-            mapDeEnderecos.put(2514000,endereco4 );
+            mapDeEnderecos.put(idEndereco,endereco4 );
             
         }
         
@@ -156,10 +168,12 @@ public class EnderecoService {
                 
                 
                 //Acha na primeira tentativa caso diferente de null
-                endereco =  (Endereco) mapDeEnderecos.get(Integer.parseInt(cep)); 
+                //endereco =  (Endereco) mapDeEnderecos.get(Integer.parseInt(cep)); 
+                endereco = buscaCep( cep.toCharArray() ); 
+                
                 
                 int lastIndex = cep.length()-1;
-                int countMaxBusca = 0; //Tenta buscar somente substituindo os ultimos 3 digitos
+                int countMaxBusca = 0; //Tenta buscar somente substituindo os ultimos 3 digitos por 0 
                 
                 
                 while ( endereco == null && countMaxBusca < 3  ){
@@ -167,7 +181,9 @@ public class EnderecoService {
                     char cepArray [] = cep.toCharArray(); 
                     cepArray[lastIndex]='0';
                     
-                    endereco = (Endereco) mapDeEnderecos.get(Integer.parseInt(String.valueOf(cepArray))); 
+                    //endereco = (Endereco) mapDeEnderecos.get(Integer.parseInt(String.valueOf(cepArray))); 
+                    endereco = buscaCep( cepArray ); 
+                    
                     
                     lastIndex = lastIndex-1; 
                     countMaxBusca++; 
@@ -208,8 +224,11 @@ public class EnderecoService {
             range.setRangeFinal(Integer.parseInt(rangeFinal));
             
             
+            idEndereco++;
+            endereco.setId(idEndereco);
+            
             listaDeRangesValidos.add(range);
-            mapDeEnderecos.put( Integer.parseInt(replacedCep) ,endereco );
+            mapDeEnderecos.put( idEndereco , endereco );
             
             
             return Response.status(200).build();
@@ -221,7 +240,6 @@ public class EnderecoService {
         @Produces(MediaType.APPLICATION_JSON)
 	public Response getListaEnderecos() {
             
-            List<Endereco> listaEnderecos = new ArrayList<Endereco>(); 
             
             Collection<Endereco>  collectionEndereco =   mapDeEnderecos.values(); 
 
@@ -246,6 +264,28 @@ public class EnderecoService {
             return Response.status(200).build();
             
         }
+        
+        
+        public Endereco buscaCep(char cepArray []){
+            
+            Endereco enderecoRetorno = null; 
+            
+            Collection<Endereco>  collectionEndereco =  mapDeEnderecos.values(); 
+            
+            for (Endereco endereco : collectionEndereco ){
+                
+                if ( endereco.getCep().equals(String.valueOf(cepArray)) ) {
+                    enderecoRetorno = endereco ; 
+                    break; 
+                }
+                
+            }
+            
+            return enderecoRetorno;
+            
+        }
+        
+        
         
         
 }

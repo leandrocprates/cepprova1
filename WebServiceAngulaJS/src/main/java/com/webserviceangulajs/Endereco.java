@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Endereco {
     
-    
+    private int id;
     private String rua ; 
     private String bairro;
     private String cidade;
@@ -23,6 +23,14 @@ public class Endereco {
     private String cep;
     private String msg;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getRua() {
         return rua;
     }
