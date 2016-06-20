@@ -12,10 +12,10 @@ Alem disso na pagina ele pode efetuar a busca de um cep que se encontrado retorn
 O projeto foi desenvolvido utilizando a implementacao de referencia de WebService Rest (Jersey) ,  AngulaJS para criar as VIEWS   e Bootstrap , e no lado do Servidor JAX-RS  utilizando Json para receber e retornar objetos e Listas  de 
 Enderecos para aquele CEP. 
 
-Foi criado um arquivo cepController.js que controla todas as acoes do usuario com a tela e efetua as requisiçoes de insercao atualizacao e delete de endereços utilizando os serviço criado presente na classe  ```EnderecoService.java``` apresentada abaixo.
+Foi criado um arquivo **cepController.js** que controla todas as acoes do usuario com a tela e efetua as requisiçoes de insercao atualizacao e delete de endereços utilizando os serviço criado presente na classe  **EnderecoService.java** apresentada abaixo.
 
 
-Os endereços cadastrado na aplicação foram armazenados na memoria ```mapDeEnderecos``` , e toda a atualização e delete dos registros serao feitos neste map. 
+Os endereços cadastrado na aplicação foram armazenados na memoria **mapDeEnderecos** , e toda a atualização e delete dos registros serao feitos neste map. 
 
 ```
 Descricao dos serviços: 
