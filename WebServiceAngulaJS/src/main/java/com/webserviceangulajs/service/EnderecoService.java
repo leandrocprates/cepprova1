@@ -55,42 +55,6 @@ public class EnderecoService {
         static int idEndereco = 1 ; 
         
         
-//	@GET
-//	@Path("/{param}")
-//        @Produces("text/plain")
-//	public Response getMsg(@PathParam("param") String cep) {
-// 		String output = "Avenida joao pessoa : " + cep;
-// 		return Response.status(200).entity(output).build();
-// 	}
-    /*
-        
-        static {
-            
-            RangesValidos range1 = new RangesValidos();
-            range1.setRangeInicial(4551000);
-            range1.setRangeFinal(4551999);
-            
-            RangesValidos range2 = new RangesValidos();
-            range2.setRangeInicial(2089000);
-            range2.setRangeFinal(2089999);
-            
-            RangesValidos range3 = new RangesValidos();
-            range3.setRangeInicial(3314000);
-            range3.setRangeFinal(3314999);
-
-            RangesValidos range4 = new RangesValidos();
-            range4.setRangeInicial(2514000);
-            range4.setRangeFinal(2514999);
-            
-            
-            listaDeRangesValidos.add(range1);
-            listaDeRangesValidos.add(range2);
-            listaDeRangesValidos.add(range3);
-            listaDeRangesValidos.add(range4);
-            
-        }
-        */
-        
         static {
             
             Endereco endereco1 = new Endereco();
@@ -153,17 +117,6 @@ public class EnderecoService {
                 boolean cepValido=false ; 
             
                 
-                /*
-                for (  RangesValidos range :  listaDeRangesValidos ) {
-                    
-                    if ( Integer.parseInt(cep) >=  range.getRangeInicial() &&   
-                         Integer.parseInt(cep) <=  range.getRangeFinal()        ){
-                        
-                        cepValido=true; 
-                    }
-                    
-                }
-                */
                 
                 if ( validaCep(cep) == false  ){
                     endereco.setMsg("Cep invalido");
@@ -216,22 +169,6 @@ public class EnderecoService {
             String replacedCep = endereco.getCep().replaceAll("-", "");
             
             
-            /*
-            RangesValidos range = new RangesValidos();
-            
-            String rangeInicial = replacedCep.substring(0, replacedCep.length() -1 -2 ) ; 
-            rangeInicial = rangeInicial+"000";
-            
-            String rangeFinal = replacedCep.substring(0, replacedCep.length() -1 -2 ) ; 
-            rangeFinal = rangeFinal+"999";
-            
-            
-            range.setRangeInicial(Integer.parseInt(rangeInicial));
-            range.setRangeFinal(Integer.parseInt(rangeFinal));
-            
-            
-            listaDeRangesValidos.add(range);
-            */
             
             // Se ID > 0 Atualiza , senao insere novo 
             if ( endereco.getId() > 0  ){
