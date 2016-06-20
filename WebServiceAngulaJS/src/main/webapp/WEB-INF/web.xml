@@ -32,7 +32,7 @@
 
 
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>cep.html</welcome-file>
     </welcome-file-list>
     
     <session-config>
