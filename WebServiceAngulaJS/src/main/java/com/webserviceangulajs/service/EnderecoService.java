@@ -49,9 +49,10 @@ public class EnderecoService {
         Request request;   
         
         
-        static List<RangesValidos> listaDeRangesValidos = new ArrayList<RangesValidos>(); 
+        /* Mapa de Enderecos carregados na memoria. */
         static HashMap mapDeEnderecos = new HashMap<Integer, Endereco>(); 
     
+        /* ID dos enderecos cadastrado , Simula Primary Key do Banco de dados. */
         static int idEndereco = 1 ; 
         
         
@@ -110,7 +111,11 @@ public class EnderecoService {
         }
         
         
-        
+        /**
+         * Funcao responsavel pela consulta do CEP
+         * @param cep - CEP para buscar no map mapDeEnderecos
+         * @return 
+         */
         
 	@GET
 	@Path("/{param}")
@@ -157,7 +162,11 @@ public class EnderecoService {
         }
         
         
-        
+        /**
+         * Funcao responsavel pela adição de novo Endereco
+         * @param endereco - Recebe o endereco para adicionar ou atualizar 
+         * @return 
+         */
         @POST
         @Path("/addEndereco")
         @Consumes(MediaType.APPLICATION_JSON)
@@ -188,7 +197,10 @@ public class EnderecoService {
             return Response.status(200).build();
         }
         
-        
+        /**
+         * Funcao responsavel por listar todos os Enderecos cadastrados
+         * @return 
+         */
 	@GET
 	@Path("/listarEnderecos")
         @Produces(MediaType.APPLICATION_JSON)
@@ -203,7 +215,11 @@ public class EnderecoService {
         }
         
 
-        
+        /**
+         * Funcao responsavel por deletar Endereco cadastrado
+         * @param endereco - Endereco a ser excluido
+         * @return 
+         */
         @DELETE
         @Path("/excluirEndereco")
         @Consumes(MediaType.APPLICATION_JSON)
@@ -222,7 +238,11 @@ public class EnderecoService {
             
         }
         
-        
+        /**
+         * Busca cep por 04551999 , 04551990 , 04551900 ou 04551000
+         * @param cepArray
+         * @return 
+         */
         public Endereco buscaCep(char cepArray []){
             
             Endereco enderecoRetorno = null; 
@@ -242,8 +262,11 @@ public class EnderecoService {
             
         }
         
-        
-        //Método que valida o Cep
+        /**
+         * Funcao responsavel por  validar o Cep
+         * @param cep - CEP a ser validado
+         * @return 
+         */
         public boolean validaCep(String cep)
         {
             if (cep.length() == 8)
