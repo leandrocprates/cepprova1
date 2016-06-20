@@ -22,6 +22,8 @@ public class Endereco {
     private String estado; 
     private String cep;
     private String msg;
+    private int numero;
+    private String complemento;
 
     public int getId() {
         return id;
@@ -78,6 +80,24 @@ public class Endereco {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+ 
+    
     
 }
 

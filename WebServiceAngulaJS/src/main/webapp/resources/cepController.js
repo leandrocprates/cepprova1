@@ -20,6 +20,8 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
         estado=null;
         cep=null;
         msg=null;
+        numero=null;
+        complemento=null;
     };
     
     
@@ -89,6 +91,7 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
         $http(req)
             .success(function (data){
                 console.log('Endereco deletado com sucesso.');
+                $scope.endereco = new Endereco(); 
                 $scope.listarEnderecos();
             })
             .error(function (data){

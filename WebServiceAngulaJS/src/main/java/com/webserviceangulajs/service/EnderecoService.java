@@ -63,7 +63,8 @@ public class EnderecoService {
             endereco1.setCep("04551500");
             endereco1.setCidade("Sao Paulo");
             endereco1.setEstado("SP");
-            endereco1.setRua("Rua Olimpíadas, 360");
+            endereco1.setRua("Rua Olimpíadas");
+            endereco1.setNumero(360);
             
             mapDeEnderecos.put(idEndereco,endereco1 );
             
@@ -75,7 +76,8 @@ public class EnderecoService {
             endereco2.setCep("02089900");
             endereco2.setCidade("Sao Paulo");
             endereco2.setEstado("SP");
-            endereco2.setRua("Travessa Casalbuono, 120");
+            endereco2.setRua("Travessa Casalbuono");
+            endereco2.setNumero(120);
 
             mapDeEnderecos.put(idEndereco,endereco2 );
             
@@ -87,7 +89,8 @@ public class EnderecoService {
             endereco3.setCep("03314030");
             endereco3.setCidade("Sao Paulo");
             endereco3.setEstado("SP");
-            endereco3.setRua("Dr. Melo Freire S/N");
+            endereco3.setRua("Dr. Melo Freire ");
+            endereco3.setNumero(50);
 
             mapDeEnderecos.put(idEndereco,endereco3 );
             
@@ -99,7 +102,8 @@ public class EnderecoService {
             endereco4.setCep("02514000");
             endereco4.setCidade("Sao Paulo");
             endereco4.setEstado("SP");
-            endereco4.setRua("Avenida Nova Cantareira, 3500");
+            endereco4.setRua("Avenida Nova Cantareira");
+            endereco4.setNumero(3500);
             
             mapDeEnderecos.put(idEndereco,endereco4 );
             
@@ -164,6 +168,7 @@ public class EnderecoService {
             System.out.println("RUA: "+ endereco.getRua());
             System.out.println("BAirro: "+endereco.getBairro());
             System.out.println("Cidade: "+endereco.getCidade());
+            System.out.println("Numero: "+endereco.getNumero());
             
 
             String replacedCep = endereco.getCep().replaceAll("-", "");
@@ -209,7 +214,7 @@ public class EnderecoService {
             System.out.println("RUA: "+ endereco.getRua());
             System.out.println("Bairro: "+endereco.getBairro());
             System.out.println("Cidade: "+endereco.getCidade());
-            
+            System.out.println("Numero: "+endereco.getNumero());
             
             mapDeEnderecos.remove(endereco.getId()); 
             
