@@ -12,7 +12,7 @@ Alem disso na pagina ele pode efetuar a busca de um cep que se encontrado retorn
 O projeto foi desenvolvido utilizando o AngulaJS e Bootstrap , e no lado do Servidor JAXRS para retornar uma lista Json de 
 Enderecos para aquele CEP. 
 
-Foi criado um arquivo cepController.js que controla todas as acoes do usuario com a tela e efetua as requisiçoes de insercao atualizacao e delete de endereços utilizando o servico criado presente na classe  ```EnderecoService.java``` 
+Foi criado um arquivo cepController.js que controla todas as acoes do usuario com a tela e efetua as requisiçoes de insercao atualizacao e delete de endereços utilizando o servico criado presente na classe  ```EnderecoService.java``` apresentada abaixo: 
 
 
 ```javascript
