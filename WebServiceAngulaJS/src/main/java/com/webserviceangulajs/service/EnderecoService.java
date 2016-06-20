@@ -113,7 +113,7 @@ public class EnderecoService {
         
         /**
          * Funcao responsavel pela consulta do CEP
-         * @param cep - CEP para buscar no map mapDeEnderecos
+         * @param cep CEP para buscar no map mapDeEnderecos
          * @return 
          */
         
@@ -164,7 +164,7 @@ public class EnderecoService {
         
         /**
          * Funcao responsavel pela adição de novo Endereco
-         * @param endereco - Recebe o endereco para adicionar ou atualizar 
+         * @param endereco Recebe o endereco para adicionar ou atualizar 
          * @return 
          */
         @POST
@@ -217,7 +217,7 @@ public class EnderecoService {
 
         /**
          * Funcao responsavel por deletar Endereco cadastrado
-         * @param endereco - Endereco a ser excluido
+         * @param endereco Endereco a ser excluido
          * @return 
          */
         @DELETE
