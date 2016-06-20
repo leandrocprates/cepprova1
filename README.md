@@ -17,7 +17,7 @@ Foi criado um arquivo cepController.js que controla todas as acoes do usuario co
 
 Os endereços cadastrado na aplicação foram armazenados na memoria ```mapDeEnderecos``` , e toda a atualização e delete dos registros serao feitos neste map. 
 
-
+```
 Descricao dos serviços: 
 
 1 - Url de consulta de um cep , utiliza Metodo @GET - public Response getMsg(@PathParam("param") String cep)  ; 
@@ -36,7 +36,7 @@ http://localhost:8084/WebServiceAngulaJS/rest/buscaEndereco/listarEnderecos
 
 http://localhost:8084/WebServiceAngulaJS/rest/buscaEndereco/excluirEndereco
 
-
+```
 
 A assinatura das funcões e sua funcionalidade esta descrita abaixo: 
 
