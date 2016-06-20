@@ -57,14 +57,38 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
         
         var url='http://localhost:8084/WebServiceAngulaJS/rest/buscaEndereco/addEndereco' ;
         
+        
+        if ( validaComposObrigatorio() == false) {
+            return;
+        }
+        
+        
         $http.post(url,$scope.endereco)
                 .success(function (data){
                     console.log('Endereco adicionado com sucesso.');
                     $scope.insercaoMessage='Endereco Inserido com sucesso.';
+                    $scope.insercaoMessageErro='';
                 })
                 .error(function (data){
                     console.log('Erro ao adicionar endereco.');
                 });
+        
+    };
+    
+    validaComposObrigatorio=function (){
+        
+        if ( ( angular.isUndefined($scope.endereco.rua) || $scope.endereco.rua == null )
+                ||  ( angular.isUndefined($scope.endereco.numero) || $scope.endereco.numero == null )
+                ||  ( angular.isUndefined($scope.endereco.cep) || $scope.endereco.cep == null )
+                ||  ( angular.isUndefined($scope.endereco.cidade) || $scope.endereco.cidade == null )
+                ||  ( angular.isUndefined($scope.endereco.estado) || $scope.endereco.estado == null )
+                
+            ) {
+            
+            $scope.insercaoMessageErro = 'Campos Rua/Cep/Numero/Cidade/Estado sao obrigatorios'; 
+            return false;
+        }
+        return true;
         
     };
     
@@ -123,6 +147,9 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
     
     $scope.irpara= function(irpara){
         $scope.showdiv=irpara; 
+        
+        $scope.insercaoMessageErro=null;
+        $scope.insercaoMessage=null;
         
         if ($scope.showdiv == 'LISTAR' ){
             $scope.listarEnderecos();
