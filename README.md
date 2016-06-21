@@ -2,12 +2,13 @@
 
 
 Foi criado uma interface com uma tela chamada **cep.html** onde inicialmente quando o usuario acesso o portal 
-ele visualiz um link no topo da tela para : 
+ele visualiza um link no topo da tela para:
 
+* Busca de endereco por CEP
 * Inserir um novo Endereco 
 * Listar todos os enderecos cadastrado 
 
-Alem disso na pagina ele pode efetuar a busca de um cep que se encontrado retornara na lista ```Resultado Busca por CEP```
+A  busca de um cep que se retornara na lista ```Resultado Busca por CEP```
 
 O projeto foi desenvolvido utilizando a implementacao de referencia de WebService Rest (Jersey) ,  AngulaJS para criar as VIEWS   e Bootstrap , e no lado do Servidor JAX-RS  utilizando Json para receber e retornar objetos e Listas  de 
 Enderecos para aquele CEP. 
