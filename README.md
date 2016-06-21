@@ -2,8 +2,9 @@
 
 
 Foi criado uma interface com uma tela chamada **cep.html** onde inicialmente quando o usuario acesso o portal 
-ele visualiz um link no topo da tela para : 
+ele visualiz um link no topo da tela para:
 
+* Busca de endereco por CEP
 * Inserir um novo Endereco 
 * Listar todos os enderecos cadastrado 
 
