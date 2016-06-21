@@ -10,7 +10,7 @@ var myAppModule = angular.module('mainApp', ['ngSanitize']);
 
 myAppModule.controller("cepController", function ($scope,$http,$sce)
 {
-    
+    //Representacao do Modelo de Endereco do Serviço
     function Endereco() {
         id=null;
         rua=null;
@@ -33,7 +33,9 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
     $scope.mensagem='';
     $scope.insercaoMessage='';
 
-    
+    /*
+     * Funcao responsavel pela Busca do endereco de um CEP , VER GITHUB Servico 1
+     */
     $scope.buscarEndereco = function(){
         
         var url='http://localhost:8084/WebServiceAngulaJS/rest/buscaEndereco/'+$scope.cepDigitado ;
@@ -51,6 +53,10 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
                 });                
     };    
     
+    
+    /*
+     * Funcao responsavel por inserir um novo endereco  , VER GITHUB Servico 2 
+     */
     
     $scope.inserirEndereco = function(){
         
@@ -76,29 +82,29 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
         
     };
     
-    validaComposObrigatorio=function (){
+    
+    /*
+     * Funcao responsavel por listar todos os enderecos cadastrados  , VER GITHUB Servico 3 
+     */
+    
+    $scope.listarEnderecos = function(){
         
-        if ( ( angular.isUndefined($scope.endereco.rua) || $scope.endereco.rua == null )
-                ||  ( angular.isUndefined($scope.endereco.numero) || $scope.endereco.numero == null )
-                ||  ( angular.isUndefined($scope.endereco.cep) || $scope.endereco.cep == null )
-                ||  ( angular.isUndefined($scope.endereco.cidade) || $scope.endereco.cidade == null )
-                ||  ( angular.isUndefined($scope.endereco.estado) || $scope.endereco.estado == null )
-                
-            ) {
-            
-            $scope.insercaoMessageErro = 'Campos Rua/Cep/Numero/Cidade/Estado sao obrigatorios'; 
-            $scope.insercaoMessage='';
-            return false;
-        }
-        return true;
+        var url='http://localhost:8084/WebServiceAngulaJS/rest/buscaEndereco/listarEnderecos' ;
         
+        $http.get(url)
+                .success(function (data){
+                    $scope.listaEndereco= ( data.length == 1 )?  new Array(data): data ;
+                    console.log('Busca correta');
+                })
+                .error(function (data){
+                    console.log('Erro na busca ');
+                });                
     };
     
     
-    $scope.alterarEndereco= function(endereco){
-        $scope.endereco= endereco;
-        $scope.showdiv='INSERIR';
-    };
+    /*
+     * Funcao responsavel excluir  enderecos  , VER GITHUB Servico 4 
+     */
     
     $scope.excluir= function(endereco){
         $scope.endereco= endereco;
@@ -129,19 +135,32 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
     };
     
     
-    $scope.listarEnderecos = function(){
+    
+    validaComposObrigatorio=function (){
         
-        var url='http://localhost:8084/WebServiceAngulaJS/rest/buscaEndereco/listarEnderecos' ;
+        if ( ( angular.isUndefined($scope.endereco.rua) || $scope.endereco.rua == null )
+                ||  ( angular.isUndefined($scope.endereco.numero) || $scope.endereco.numero == null )
+                ||  ( angular.isUndefined($scope.endereco.cep) || $scope.endereco.cep == null )
+                ||  ( angular.isUndefined($scope.endereco.cidade) || $scope.endereco.cidade == null )
+                ||  ( angular.isUndefined($scope.endereco.estado) || $scope.endereco.estado == null )
+                
+            ) {
+            
+            $scope.insercaoMessageErro = 'Campos Rua/Cep/Numero/Cidade/Estado sao obrigatorios'; 
+            $scope.insercaoMessage='';
+            return false;
+        }
+        return true;
         
-        $http.get(url)
-                .success(function (data){
-                    $scope.listaEndereco= ( data.length == 1 )?  new Array(data): data ;
-                    console.log('Busca correta');
-                })
-                .error(function (data){
-                    console.log('Erro na busca ');
-                });                
     };
+    
+    
+    $scope.alterarEndereco= function(endereco){
+        $scope.endereco= endereco;
+        $scope.showdiv='INSERIR';
+    };
+    
+    
     
     $scope.irpara= function(irpara){
         $scope.showdiv=irpara; 
