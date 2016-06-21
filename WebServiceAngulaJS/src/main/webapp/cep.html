@@ -21,11 +21,14 @@ and open the template in the editor.
   </head>
   <body ng-app="mainApp" ng-controller="cepController">
 
+
+    <a ng-href="" ng-click="irpara('LISTAR')">Listar Endereco </a><br/>
+    <a ng-href="" ng-click="irpara('INSERIR')">Inserir Endereco </a><br/>
+    <a ng-href="" ng-click="irpara('BUSCA')">Ir para Busca  </a><br/>
+
       
     <div ng-show="showdiv=='BUSCA'">
     
-            <a ng-href="" ng-click="irpara('LISTAR')">Listar Endereco </a><br/>
-            <a ng-href="" ng-click="irpara('INSERIR')">Inserir Endereco </a>
         
       
             <h1>Busca Endereco do CEP </h1>  
@@ -88,7 +91,6 @@ and open the template in the editor.
     <div ng-show="showdiv=='LISTAR'" class="col-md-12">
           
         
-          <a ng-href="" ng-click="irpara('BUSCA')">Ir para Busca  </a>
           
           <h1>Lista de Ceps </h1>
           
@@ -100,6 +102,7 @@ and open the template in the editor.
 
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Rua</th>
                             <th>Numero</th>
                             <th>Bairro</th>
@@ -113,6 +116,7 @@ and open the template in the editor.
 
                     <tbody>
                         <tr ng-repeat=" endereco in listaEndereco "  >
+                            <td>{{endereco.id}}</td>
                             <td>{{endereco.rua}}</td>
                             <td>{{endereco.numero}}</td>
                             <td>{{endereco.bairro}}</td>
@@ -137,8 +141,7 @@ and open the template in the editor.
       
     <div ng-show="showdiv=='INSERIR'" class="col-md-5">
         
-            <a ng-href="" ng-click="irpara('BUSCA')">Ir para Busca  </a>
-        
+            
             <h1>Inserir Cep Novo</h1>  
             
             <div class="alert alert-success" role="alert" ng-show="insercaoMessage.length>1"  >{{insercaoMessage}}</div>
