@@ -69,6 +69,8 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
                     $scope.insercaoMessageErro='';
                 })
                 .error(function (data){
+                    $scope.insercaoMessageErro=data.msg;
+                    $scope.insercaoMessage='';
                     console.log('Erro ao adicionar endereco.');
                 });
         
@@ -85,6 +87,7 @@ myAppModule.controller("cepController", function ($scope,$http,$sce)
             ) {
             
             $scope.insercaoMessageErro = 'Campos Rua/Cep/Numero/Cidade/Estado sao obrigatorios'; 
+            $scope.insercaoMessage='';
             return false;
         }
         return true;

@@ -129,7 +129,7 @@ public class EnderecoService {
                 
                 if ( validaCep(cep) == false  ){
                     endereco.setMsg("Cep invalido");
-                    return Response.status(404).entity(endereco).build();
+                    return Response.status(400).entity(endereco).build();
                 }
             
                 
@@ -181,6 +181,13 @@ public class EnderecoService {
             
 
             String replacedCep = endereco.getCep().replaceAll("-", "");
+            
+            if ( validaCep(replacedCep) == false  ){
+                endereco.setMsg("Cep invalido. Nao é possivel adicionar endereco.");
+                return Response.status(400).entity(endereco).build();
+            }
+            
+            endereco.setCep(replacedCep);
             
             
             
